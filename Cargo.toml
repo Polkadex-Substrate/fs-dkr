@@ -12,24 +12,49 @@ edition = "2018"
 
 
 [dependencies.paillier]
-git = "https://github.com/KZen-networks/rust-paillier"
-tag = "v0.3.10"
-default-features = false
+git = "https://github.com/Polkadex-Substrate/rust-paillier"
+branch = "sgx-enabled"
 
 [dependencies.zk-paillier]
-git = "https://github.com/KZen-networks/zk-paillier"
-tag = "v0.3.12"
-default-features = false
+git = "https://github.com/Polkadex-Substrate/zk-paillier"
+branch = "sgx-enabled"
 
 [dependencies.multi-party-ecdsa]
-git = "https://github.com/ZenGo-X/multi-party-ecdsa"
-tag = "v0.7.1"
-default-features = false
+git = "https://github.com/Polkadex-Substrate/multi-party-ecdsa.git"
+branch = "sgx-enabled"
 
 [dependencies]
-curv = { package = "curv-kzen", version = "0.7", default-features = true }
-serde = { version = "1.0", features = ["derive"] }
-serde_derive = "1.0"
-zeroize = "1"
-round-based = { version = "0.1.4", features = ["dev"] }
-thiserror = "1.0.26"
+curv = { git = "https://github.com/Polkadex-Substrate/curv.git", branch = "sgx-enabled" }
+serde = { git = "https://github.com/mesalock-linux/serde-sgx", features = ["derive"] }
+zeroize = "1.3.0"
+round-based = { git = "https://github.com/Polkadex-Substrate/round-based-protocol.git", branch = "sgx-enabled" }
+thiserror = {git = "https://github.com/mesalock-linux/thiserror-sgx"}
+
+[target.'cfg(not(target_env = "sgx"))'.dependencies]
+sgx_tstd = { rev = "v1.1.3", git = "https://github.com/apache/teaclave-sgx-sdk.git", features = ["backtrace"] }
+
+[patch.'https://github.com/apache/teaclave-sgx-sdk.git']
+sgx_alloc = { git = "https://github.com/apache/incubator-teaclave-sgx-sdk.git" }
+sgx_build_helper = { git = "https://github.com/apache/incubator-teaclave-sgx-sdk.git" }
+#sgx_cov = {  git = "https://github.com/apache/incubator-teaclave-sgx-sdk.git" }
+#sgx_crypto_helper = {  git = "https://github.com/apache/incubator-teaclave-sgx-sdk.git" }
+sgx_libc = { git = "https://github.com/apache/incubator-teaclave-sgx-sdk.git" }
+sgx_rand = { git = "https://github.com/apache/incubator-teaclave-sgx-sdk.git" }
+#sgx_rand_derive = {  git = "https://github.com/apache/incubator-teaclave-sgx-sdk.git" }
+#sgx_serialize = {  git = "https://github.com/apache/incubator-teaclave-sgx-sdk.git" }
+#sgx_serialize_derive = {  git = "https://github.com/apache/incubator-teaclave-sgx-sdk.git" }
+#sgx_serialize_derive_internals = {  git = "https://github.com/apache/incubator-teaclave-sgx-sdk.git" }
+#sgx_tcrypto = {  git = "https://github.com/apache/incubator-teaclave-sgx-sdk.git" }
+#sgx_tcrypto_helper = {  git = "https://github.com/apache/incubator-teaclave-sgx-sdk.git" }
+#sgx_tdh = {  git = "https://github.com/apache/incubator-teaclave-sgx-sdk.git" }
+#sgx_tkey_exchange = {  git = "https://github.com/apache/incubator-teaclave-sgx-sdk.git" }
+sgx_tprotected_fs = { git = "https://github.com/apache/incubator-teaclave-sgx-sdk.git" }
+sgx_trts = { git = "https://github.com/apache/incubator-teaclave-sgx-sdk.git" }
+#sgx_tse = {  git = "https://github.com/apache/incubator-teaclave-sgx-sdk.git" }
+#sgx_tseal = {  git = "https://github.com/apache/incubator-teaclave-sgx-sdk.git" }
+sgx_tstd = { git = "https://github.com/apache/incubator-teaclave-sgx-sdk.git" }
+#sgx_tunittest = {  git = "https://github.com/apache/incubator-teaclave-sgx-sdk.git" }
+sgx_types = { git = "https://github.com/apache/incubator-teaclave-sgx-sdk.git" }
+#sgx_ucrypto = {  git = "https://github.com/apache/incubator-teaclave-sgx-sdk.git" }
+sgx_unwind = { git = "https://github.com/apache/incubator-teaclave-sgx-sdk.git" }
+sgx_urts = { git = "https://github.com/apache/incubator-teaclave-sgx-sdk.git" }
