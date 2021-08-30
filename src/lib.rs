@@ -10,6 +10,7 @@ use curv::cryptographic_primitives::secret_sharing::feldman_vss::VerifiableSS;
 use curv::elliptic::curves::traits::{ECPoint, ECScalar};
 use curv::BigInt;
 use multi_party_ecdsa::protocols::multi_party_ecdsa::gg_2020::state_machine::keygen::LocalKey;
+pub use paillier::DecryptionKey;
 use paillier::{
     Add, Decrypt, Encrypt, EncryptWithChosenRandomness, EncryptionKey,
     KeyGeneration, Mul, Paillier, Randomness, RawCiphertext, RawPlaintext,
@@ -19,6 +20,7 @@ use serde::{Deserialize, Serialize};
 use std::fmt::Debug;
 use zeroize::Zeroize;
 use zk_paillier::zkproofs::{NICorrectKeyProof, SALT_STRING};
+use serde::{Deserialize, Serialize};
 
 // Everything here can be broadcasted
 #[derive(Clone, Deserialize, Serialize)]
